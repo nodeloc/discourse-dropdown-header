@@ -6,6 +6,16 @@ export default apiInitializer("1.29.0", (api) => {
     return;
   }
 
+  // 检测是否为桌面设备
+  const isDesktop = () => {
+    return window.innerWidth > 768 && !api.isMobileView;
+  };
+
+  // 只在桌面设备上显示
+  if (!isDesktop()) {
+    return;
+  }
+
   if (settings.links_position === "right") {
     api.headerButtons.add("dropdown-header", CustomHeaderLinks, {
       before: "auth",
